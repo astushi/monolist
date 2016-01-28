@@ -23,11 +23,13 @@ class User < ActiveRecord::Base
 
   # 他のユーザーをフォローする
   def follow(other_user)
-    following_relationships.create(followed_id: other_user.id)
+    following_relationships.find_or_create_by(followed_id: other_user.id)
   end
 
   def unfollow(other_user)
-    following_relationships.find_by(followed_id: other_user.id).destroy
+    following_relationship = following_relationships.find_by(followed_id: other_user.id)
+    following_relationship.destroy if following_relationship
+    #following_relationships.find_by(followed_id: other_user.id).destroy
   end
 
   def following?(other_user)
@@ -36,21 +38,30 @@ class User < ActiveRecord::Base
 
   ## TODO 実装
   def have(item)
-    
+    haves.find_or_create_by(item_id: item.id)
   end
 
   def unhave(item)
+    have_items = haves.find_by(item_id: item.id)
+    have_items.destroy if have_items
   end
 
   def have?(item)
+    have_items.include?(item)
   end
 
   def want(item)
+    wants.find_or_create_by(item_id: item.id)
   end
 
   def unwant(item)
+    
+    want_items = wants.find_by(item_id: item.id)
+    want_items.destroy if want_items
   end
 
   def want?(item)
+    want_items.include?(item)
   end
+
 end
