@@ -1,0 +1,35 @@
+<div class="ranking_header">
+    <h1><%= yield(:title) %>ランキング</h1>
+    <p>ランキング上位10個を表示</p>
+</div>
+<div class="row">
+    <div class="ranking col-sm-11 col-sm-offset-1">
+        <table class="table">
+            <% rank = 1 %>
+            <% @items_ranked.each_with_index do |item, i| %>
+                <% rank += 1 if i !=0 && @counts[i] < @counts[i-1] %>
+                <tr class="rankking_item">
+                    <td id ="ranking_<%= rank %>" class="col-sm-2">
+                        <%= rank %>位
+                    </td>
+                    <td class="col-sm-2">
+                        <% if item.medium_image.present? %>
+                            <%= link_to image_tag(item.medium_image,{alt: item.title}), item %>
+                        <% else %>
+                            <%= link_to  image_tag("no-image.png" , alt: item.title, size:"150x150" ) , item %>
+                        <% end %>
+                    </td>
+                    <td>
+                        <%= yield(:title) %>数:<%= @counts[i] %>
+                    </td>
+                    <td class="col-sm-4">
+                        <%= link_to item.title, item %>
+                    </td>
+                    <td class="col-sm-2">
+                        <%= link_to(image_tag("amazon-button.png", {alt: "Amazon詳細ページへ"}), item.detail_page_url,target: '_blank') %>
+                    </td>
+                </tr>
+            <% end %>
+        </table>
+    </div>
+</div>

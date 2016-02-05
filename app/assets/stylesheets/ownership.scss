@@ -1,0 +1,41 @@
+.ranking_header {
+  margin: 40px 0 20px;
+  h1 {
+     width:440px;
+     margin:auto; 
+     text-align:center;
+  }
+  p {
+      text-align:center;
+  }
+}
+.ranking {
+    tr.rankking_item {
+        margin: 20px 0 20px;
+       
+        td{
+             vertical-align: middle;
+             text-align:center;
+             font-size: 22px;
+        }
+        td a:hover img{
+            opacity: 0.6;
+        }
+        td#ranking_1
+            {
+                font-size: 52px;
+                color:gold;
+        }
+        td#ranking_2
+            {
+                font-size: 42px;
+                color:silver;
+        }
+        td#ranking_3
+            {
+                font-size: 32px;
+                color:#CD7F32;
+        }
+    
+    }
+}

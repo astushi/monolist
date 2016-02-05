@@ -33,8 +33,7 @@
         <div class="side-box-body">
           <% # TODO Haveしたユーザー一覧 %>
            <% @item.haves.each do |item| %>
-             <% user = User.find_by(id: item.user_id) %>
-             <%= link_to (gravatar_for user, size: 30), user_path(user) %>
+             <%= link_to (gravatar_for user_have_or_want_item(item), size: 30), user_path(user_have_or_want_item(item)) %>
            <% end %>
         </div>
       </div>
@@ -43,8 +42,7 @@
         <div class="side-box-body">
           <% # TODO Wantしたユーザー一覧 %>
            <% @item.wants.each do |item| %>
-             <% user = User.find_by(id: item.user_id) %>
-             <%= link_to (gravatar_for user, size: 30), user_path(user) %>
+             <%= link_to (gravatar_for user_have_or_want_item(item), size: 30), user_path(user_have_or_want_item(item)) %>
            <% end %>
         </div>
       </div>
